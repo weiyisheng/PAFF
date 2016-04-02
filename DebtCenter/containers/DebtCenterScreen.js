@@ -1,13 +1,15 @@
 
 //components
-import React, { StyleSheet, Component, View,
+import React, { Component, View,
   ScrollView, Text } from 'react-native'
 import PAFFNavBar from 'PAFFNavBar'
 import Cell from './components/Cell'
 
+import HFStyleSheet from 'HFStyleSheet'
+
 //constants
-import { Flex1, ContainerNomalPadding, WidthScale, WindowWidth } from '../constants/styles'
 import { Gray1, BorderColor, Yellow, Blue } from '../constants/colors'
+import { ContainerNomalPadding } from '../constants/dimens'
 
 class Debt extends Component{
 
@@ -23,7 +25,7 @@ class Debt extends Component{
 
   render() {
     return (
-      <ScrollView style={[Flex1, styles.cot]}>
+      <ScrollView style={[styles.cot]}>
         <PAFFNavBar title={"负债"} onBackPressed={() => this.back()}/>
 
         <View style={[styles.totalBox]}>
@@ -31,7 +33,7 @@ class Debt extends Component{
             <Text style={[styles.title]}>总 ¥30495.00</Text>
           </View>
 
-          <View style={{height: 120 * WidthScale, width: 3}}></View>
+          <View style={{height: 120, width: 3}}></View>
         </View>
 
         <Cell
@@ -39,7 +41,7 @@ class Debt extends Component{
           right={{text: "我的合同", style: {color: Blue}}}
           onRightPress={() => this.gotoContract()}/>
 
-        
+
       </ScrollView>
     )
   }
@@ -47,7 +49,7 @@ class Debt extends Component{
 
 module.exports = Debt;
 
-const styles = StyleSheet.create({
+const styles = HFStyleSheet.create({
 
   cot: {
     flex: 1
@@ -55,10 +57,10 @@ const styles = StyleSheet.create({
   totalBox: {
     backgroundColor: Gray1,
     paddingHorizontal: ContainerNomalPadding,
-    paddingBottom: 20 * WidthScale
+    paddingBottom: 20
   },
   titleBox: {
-    paddingVertical: 12 * WidthScale,
+    paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: BorderColor,
     alignItems: 'center'
@@ -67,5 +69,4 @@ const styles = StyleSheet.create({
     color: Yellow,
     fontSize: 15
   }
-
 })

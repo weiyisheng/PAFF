@@ -6,5 +6,6 @@ module.exports = {
   Gray1: "#f4f4f4",
   Gray2: "#dadada",
   Gray3: "#c1c1c1",
-  BorderColor: "#dadada"
+  BorderColor: "#dadada",
+  ContainerNomalPadding: 17
 }

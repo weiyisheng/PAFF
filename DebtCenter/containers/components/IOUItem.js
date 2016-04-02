@@ -1,7 +1,9 @@
 import React from 'react-native'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { WidthScale, ContainerNomalPadding } from '../../constants/styles'
+import { View, Text, TouchableOpacity } from 'react-native'
+import { ContainerNomalPadding } from '../../constants/dimens'
 import { Black } from '../../constants/colors'
+
+import HFStyleSheet from 'HFStyleSheet'
 
 const IOUItem = React.createClass({
 
@@ -12,7 +14,7 @@ const IOUItem = React.createClass({
   }
 })
 
-const styles = StyleSheet.create({
+const styles = HFStyleSheet.create({
 
 })
 
