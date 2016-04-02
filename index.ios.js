@@ -56,7 +56,7 @@ var App = React.createClass({
 		// );
 		let {screen, ...props} = this.props;
 		let route = {props};
-		route.screen = HFModuleManager.getMainScreen("DebtCenter");
+		route.screen = HFModuleManager.getMainScreen("MainModule");
 		return (
 			<HFNavigator initialRoute={route}/>
 		);
