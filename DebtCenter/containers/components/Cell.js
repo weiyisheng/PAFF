@@ -11,9 +11,9 @@ const Cell = React.createClass({
 
     let l = left ?
       (left.text ? <Text style={[styles.cellText, left.style]}>{left.text}</Text> : left) :
-      <View />
+      <View style={styles.empty}/>
 
-    let r = <View />
+    let r = <View style={styles.empty}/>
     if(right) {
       if(right.text) {
         if(onRightPress) {
@@ -30,7 +30,7 @@ const Cell = React.createClass({
 
     let m = middle ?
       (middle.text ? <Text style={[styles.cellText, middle.style]}>{middle.text}</Text> : middle) :
-      <View />
+      <View  style={styles.empty}/>
 
     return (
       <View style={[styles.cell, style]}>
@@ -50,10 +50,11 @@ const styles = HFStyleSheet.create({
   cellText: {
     fontSize: 13,
     color: Black,
-    marginTop: 15,
-    marginBottom: 15,
-    marginRight: ContainerNomalPadding,
-    marginLeft: ContainerNomalPadding
+    marginHorizontal: 13,
+    marginVertical: ContainerNomalPadding
+  },
+  empty: {
+    flex: 1
   }
 })
 

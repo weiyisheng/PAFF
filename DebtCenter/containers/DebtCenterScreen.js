@@ -4,6 +4,7 @@ import React, { Component, View,
   ScrollView, Text } from 'react-native'
 import PAFFNavBar from 'PAFFNavBar'
 import Cell from './components/Cell'
+import IOUItem from './components/IOUItem'
 
 import HFStyleSheet from 'HFStyleSheet'
 
@@ -24,6 +25,7 @@ class Debt extends Component{
   }
 
   render() {
+    const { navigator } = this.props
     return (
       <ScrollView style={[styles.cot]}>
         <PAFFNavBar title={"负债"} onBackPressed={() => this.back()}/>
@@ -41,6 +43,13 @@ class Debt extends Component{
           right={{text: "我的合同", style: {color: Blue}}}
           onRightPress={() => this.gotoContract()}/>
 
+        <IOUItem />
+        <IOUItem />
+
+        <Cell
+          left={{text: "其他"}}/>
+
+        <IOUItem />
 
       </ScrollView>
     )

@@ -1,3 +1,3 @@
 module.exports = {
-  ContainerNomalPadding: 17
+  ContainerNomalPadding: 15
 }
