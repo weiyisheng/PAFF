@@ -50,8 +50,8 @@ const styles = HFStyleSheet.create({
   cellText: {
     fontSize: 13,
     color: Black,
-    marginHorizontal: 13,
-    marginVertical: ContainerNomalPadding
+    marginHorizontal: ContainerNomalPadding,
+    marginVertical: 13
   },
   empty: {
     flex: 1

@@ -27,31 +27,40 @@ class Debt extends Component{
   render() {
     const { navigator } = this.props
     return (
-      <ScrollView style={[styles.cot]}>
-        <PAFFNavBar title={"负债"} onBackPressed={() => this.back()}/>
+      <View style={[styles.cot]}>
+        <PAFFNavBar
+          title={"负债"}
+          onBackPressed={() => this.back()}/>
 
-        <View style={[styles.totalBox]}>
-          <View style={[styles.titleBox]}>
-            <Text style={[styles.title]}>总 ¥30495.00</Text>
+        <ScrollView style={[styles.cot]}>
+
+          <View style={[styles.totalBox]}>
+            <View style={[styles.titleBox]}>
+              <Text style={[styles.title]}>
+                总 ¥30495.00
+              </Text>
+            </View>
+
+            <View style={{height: 120, width: 3}}>
+            </View>
           </View>
+          
+          <Cell
+            left={{text: "存贷通(2)"}}
+            right={{text: "我的合同", style: {color: Blue}}}
+            onRightPress={() => this.gotoContract()}/>
 
-          <View style={{height: 120, width: 3}}></View>
-        </View>
+          <IOUItem navigator={navigator}/>
+          <IOUItem navigator={navigator}/>
 
-        <Cell
-          left={{text: "存贷通(2)"}}
-          right={{text: "我的合同", style: {color: Blue}}}
-          onRightPress={() => this.gotoContract()}/>
+          <Cell
+            left={{text: "其他"}}/>
 
-        <IOUItem />
-        <IOUItem />
+          <IOUItem navigator={navigator}/>
 
-        <Cell
-          left={{text: "其他"}}/>
+        </ScrollView>
+      </View>
 
-        <IOUItem />
-
-      </ScrollView>
     )
   }
 }
