@@ -4,7 +4,7 @@ import React, { Component, View,
   ScrollView, Text } from 'react-native'
 import PAFFNavBar from 'PAFFNavBar'
 import Cell from './components/Cell'
-import IOUItem from './components/IOUItem'
+import DebtListItem from './components/DebtListItem'
 
 import HFStyleSheet from 'HFStyleSheet'
 
@@ -44,19 +44,19 @@ class Debt extends Component{
             <View style={{height: 120, width: 3}}>
             </View>
           </View>
-          
+
           <Cell
             left={{text: "存贷通(2)"}}
             right={{text: "我的合同", style: {color: Blue}}}
             onRightPress={() => this.gotoContract()}/>
 
-          <IOUItem navigator={navigator}/>
-          <IOUItem navigator={navigator}/>
+          <DebtListItem navigator={navigator}/>
+          <DebtListItem navigator={navigator}/>
 
           <Cell
             left={{text: "其他"}}/>
 
-          <IOUItem navigator={navigator}/>
+          <DebtListItem navigator={navigator}/>
 
         </ScrollView>
       </View>
@@ -84,7 +84,8 @@ const styles = HFStyleSheet.create({
     alignItems: 'center'
   },
   title: {
+    exclude: ["fontSize"],
     color: Yellow,
-    fontSize: 15
+    fontSize: 16
   }
 })
