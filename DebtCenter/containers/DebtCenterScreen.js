@@ -5,7 +5,7 @@ import React, { Component, View,
 import PAFFNavBar from 'PAFFNavBar'
 import Cell from './components/Cell'
 import DebtListItem from './components/DebtListItem'
-
+import HistogramBox from './components/HistogramBox'
 import HFStyleSheet from 'HFStyleSheet'
 
 //constants
@@ -41,8 +41,7 @@ class Debt extends Component{
               </Text>
             </View>
 
-            <View style={{height: 120, width: 3}}>
-            </View>
+            <HistogramBox maxColHeight={100} data={[3000, 2600, 5000, 600]}/>
           </View>
 
           <Cell
