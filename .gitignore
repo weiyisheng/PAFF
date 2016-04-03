@@ -30,5 +30,6 @@ local.properties
 
 # node.js
 #
+project.pbxproj
 node_modules/
 npm-debug.log

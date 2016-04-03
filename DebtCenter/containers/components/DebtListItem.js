@@ -6,7 +6,7 @@ import Cell from "./Cell"
 
 import HFStyleSheet from 'HFStyleSheet'
 
-const IOUItem = React.createClass({
+const DebtListItem = React.createClass({
 
   renderRightIcon() {
     return (
@@ -18,7 +18,7 @@ const IOUItem = React.createClass({
 
   gotoIOUDetails() {
     this.props.navigator.push({
-      screen: require('../IOUDetailsScreen')
+      screen: require('../DebtDetailsScreen')
     })
   },
 
@@ -58,11 +58,13 @@ const styles = HFStyleSheet.create({
     backgroundColor: Gray2
   },
   lable: {
+    exclude: ["fontSize"],
     fontSize: 15,
     color: Black,
     marginVertical: 8,
   },
   info: {
+    exclude: ["fontSize"],
     fontSize: 15,
     color: Red,
     marginVertical: 8,
@@ -73,17 +75,20 @@ const styles = HFStyleSheet.create({
     paddingTop: 10
   },
   date: {
+    exclude: ["fontSize"],
     fontSize: 13,
     marginBottom: 8,
     marginHorizontal: ContainerNomalPadding
   },
   itemName: {
+    exclude: ["fontSize"],
     fontSize: 14,
     color: Black,
     marginVertical: 8,
     width: 80,
   },
   itemInfo: {
+    exclude: ["fontSize"],
     fontSize: 14,
     color: Black,
     marginVertical: 8,
@@ -98,4 +103,4 @@ const styles = HFStyleSheet.create({
   }
 })
 
-module.exports = IOUItem
+module.exports = DebtListItem
