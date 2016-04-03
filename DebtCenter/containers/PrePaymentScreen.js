@@ -2,7 +2,7 @@
 //components
 import React, { Component, View,
   ScrollView, Text, TouchableOpacity, Image,
-  DeviceEventEmitter } from 'react-native'
+  DeviceEventEmitter, Platform } from 'react-native'
 import PAFFNavBar from 'PAFFNavBar'
 import Cell from './components/Cell'
 import Modal from './components/Modal'
@@ -69,7 +69,10 @@ class PrePayment extends Component {
   render() {
     let { modalHeight, modalTitleHeight, keyboardSpace } = this.state
 
-    let editModalHeight = (keyboardSpace > 0) ? (modalTitleHeight + keyboardSpace) : modalHeight
+    let editModalHeight = Platform.OS === "ios" ?
+      (keyboardSpace > 0) ? (modalTitleHeight + keyboardSpace) : modalHeight
+      : modalTitleHeight
+
     return (
       <View style={[styles.cot]}>
         <PAFFNavBar
