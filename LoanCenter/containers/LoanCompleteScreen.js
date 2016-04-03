@@ -1,4 +1,5 @@
-import React, { View, Text, ListView, Image, Platform, TouchableOpacity, ScrollView } from 'react-native'
+import React, { View, Text, ListView, Image,
+  Platform, TouchableOpacity, ScrollView } from 'react-native'
 
 import PAFFNavBar from 'PAFFNavBar'
 import HFStyleSheet from 'HFStyleSheet'
@@ -58,7 +59,7 @@ class LoanCompleteScreen extends React.Component {
 const styles = HFStyleSheet.create({
   finishBtn: {
     position: 'absolute',
-    top: 8,
+    top: Platform.OS === 'ios' ? 28 : 8,
     right: 8
   },
   finishBtnText: {

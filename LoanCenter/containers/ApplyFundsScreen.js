@@ -46,7 +46,9 @@ class ApplyFundsScreen extends React.Component {
             <Text style={styles.repaymentDeadTime}>2016.02.12</Text>
           </View>
         </View>
-        <Image/>
+        <TouchableOpacity style={styles.selectImageBox}>
+          <Image  source={require('./img/common_selected_disable.png')}/>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -100,6 +102,7 @@ const styles = HFStyleSheet.create({
 
   },
   contractItemContainer: {
+    flexDirection: 'row',
     paddingVertical: 14,
     paddingLeft: 16,
     backgroundColor: Gray1,
@@ -139,6 +142,10 @@ const styles = HFStyleSheet.create({
   },
   repaymentDeadTime: {
     fontWeight: 'bold'
+  },
+  selectImageBox: {
+    marginLeft: 140,
+    alignSelf: 'center'
   },
   createNewContract: {
     flexDirection: 'row',

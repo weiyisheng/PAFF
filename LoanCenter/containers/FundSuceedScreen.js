@@ -39,7 +39,7 @@ class FundSuceedScreen extends React.Component {
 const styles = HFStyleSheet.create({
   finishBtn: {
     position: 'absolute',
-    top: 8,
+    top: Platform.OS === 'ios' ? 28 : 8,
     right: 8
   },
   finishBtnText: {

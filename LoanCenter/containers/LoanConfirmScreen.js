@@ -87,6 +87,7 @@ class LoanConfirmScreen extends React.Component {
 
 const styles = HFStyleSheet.create({
   scrollViewStyle: {
+    exclude: ['height'],
       height: Platform.OS === 'ios' ? WindowHeight - 64 : WindowHeight - 56 - 24 * HeightScale
   },
   boxItem: {

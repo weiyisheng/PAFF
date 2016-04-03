@@ -4,8 +4,11 @@ import PAFFNavBar from 'PAFFNavBar'
 import HFStyleSheet from 'HFStyleSheet'
 import PAFFTextInput from 'PAFFTextInput'
 import PAFFButton from 'PAFFButton'
+import Modal from './components/ModalBox'
 
-import { TextColorBlack, TextYellow, NextBtn } from '../constants/StyleConstants'
+let selectedColor = { backgroundColor: '#fff' }
+
+import { TextColorBlack, TextYellow, NextBtn, Gray2, Gray1, WindowWidth } from '../constants/StyleConstants'
 
 class LoanAppliedScreen extends React.Component {
 
@@ -21,7 +24,7 @@ class LoanAppliedScreen extends React.Component {
 
   renderSelectRepaymentIcon() {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => this.commonModal.open()}>
         <Image source={require('./img/common_inputbox_ic_drop_down.png')}/>
       </TouchableOpacity>
     )
@@ -29,7 +32,7 @@ class LoanAppliedScreen extends React.Component {
 
   render() {
     return(
-      <View>
+      <View style={styles.LoanAppliedContainer}>
         <PAFFNavBar
           title={"贷款申请"}
           onBackPressed={() => this.props.navigator.pop()}/>
@@ -59,12 +62,52 @@ class LoanAppliedScreen extends React.Component {
               themeColor={'#e0e0e0'}
               onPress={() => this.goToLoanConfirm()}/>
         </View>
+        <Modal style={[styles.ModalContainer]}
+          backdrop={true}
+          backdropPressToClose={true}
+          position={"bottom"}
+          ref={e => this.commonModal = e}
+          backdropOpacity={.6}
+          animationDuration={400}
+          >
+          <View>
+            <View>
+              <Text style={styles.modalTitle}>还款方式</Text>
+              <TouchableOpacity
+                style={[styles.modalBtn, styles.leftBtn]}
+                onPress={() => this.commonModal.close()}>
+                <Text style={styles.modalBtnText}>取消</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[styles.modalBtn, styles.rightBtn]}>
+                <Text style={styles.modalBtnText}>保存</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.border}/>
+            <View style={styles.statusItemBox}>
+              <TouchableOpacity style={styles.statusItem}>
+                <Text style={[styles.textItem]}>一次性还款</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[styles.statusItem,selectedColor]}>
+                <Text style={[styles.textItem]}>按月等额本金</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.statusItem}>
+                <Text style={[styles.textItem]}>按月等额本息</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.statusItem}>
+                <Text style={[styles.textItem]}>按月付息到期还本</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
       </View>
     )
   }
 }
 
 const styles = HFStyleSheet.create({
+  LoanAppliedContainer: {
+    flex: 1
+  },
   mortgageLendingBox: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -126,6 +169,55 @@ const styles = HFStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  ModalContainer: {
+    height: 350
+  },
+  modalBtn: {
+    paddingVertical: 18,
+    paddingHorizontal: 10,
+    position: "absolute",
+    top: 0
+  },
+  leftBtn: {
+    left: 0
+  },
+  rightBtn: {
+    right: 0
+  },
+  modalBtnText: {
+    exclude: ["fontSize"],
+    fontSize: 14
+  },
+  modalTitle: {
+    exclude: ["fontSize"],
+    fontSize: 16,
+    textAlign: "center",
+    marginTop: 17
+  },
+  border: {
+    height: 1,
+    marginTop: 16,
+    backgroundColor: Gray2
+  },
+  statusItemBox: {
+    height: 300,
+    paddingTop: 40,
+    backgroundColor: Gray1
+  },
+  statusItem: {
+    exclude: ['width'],
+    marginTop: 12,
+    paddingVertical: 8,
+    width: WindowWidth,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  textItem: {
+    exclude: ['fontSize'],
+    fontSize: 18,
+    color: '#262626',
+    opacity: 0.8
+  }
 })
 
 module.exports = LoanAppliedScreen
