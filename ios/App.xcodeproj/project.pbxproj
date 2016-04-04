@@ -356,7 +356,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 23JMLVQVBK;
+						DevelopmentTeam = 2MFBDZ94N3;
 					};
 				};
 			};
@@ -627,7 +627,7 @@
 					"$(PROJECT_DIR)/App/third",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example5.App;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.examp.App;
 				PRODUCT_NAME = App;
 				PROVISIONING_PROFILE = "";
 			};
@@ -651,7 +651,7 @@
 					"$(PROJECT_DIR)/App/third",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example5.App;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.examp.App;
 				PRODUCT_NAME = App;
 				PROVISIONING_PROFILE = "";
 			};
