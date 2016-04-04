@@ -21,6 +21,11 @@ class Contract extends Component {
   back() {
     this.props.navigator.pop()
   },
+  onContractDetailClick(){
+    this.props.navigator.push({
+      screen: require('ContractDetailScreen')
+    })
+  },
 
   getInitialState : function(){
         var ds = new ListView.DataSource({
@@ -71,7 +76,8 @@ class Contract extends Component {
   render() {
     return (
       <ScrollView style={[styles.cot]}>
-        <PAFFNavBar title={"合同1"} onBackPressed={() => this.back()}/>
+        <PAFFNavBar title={"合同1"} onBackPressed={() => this.back()}
+        right = {"合同详情"} onMenuSelected={() => this}/>
         <View style = { styles.container}>
         <Cell
         left = {{text : '授信总额'}}
