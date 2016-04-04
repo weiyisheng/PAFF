@@ -6,7 +6,8 @@ import React, {
    ScrollView,
    Text,
    ListView,
-   PixelRatio
+   PixelRatio,
+   TouchableOpacity
 } from 'react-native'
 import PAFFNavBar from 'PAFFNavBar'
 import Cell from './components/Cell'
@@ -15,47 +16,46 @@ import HFStyleSheet from 'HFStyleSheet'
 
 //constants
 import { Gray1, BorderColor, Yellow, Blue } from '../constants/colors'
+import { ContainerNomalPadding } from '../constants/dimens'
+
+var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 class ContractList extends Component {
 
   back() {
     this.props.navigator.pop()
-  },
+  };
 
-  getInitialState : function(){
-    var ds = new ListView.DataSource({
-      rowHasChanged : (r1 , r2) => ri!=r2
-    });
-    return {
-      dataSource : ds.cloneWithRows(['nihao1' , 'nihao2']),
-    };
-      // return{
-      //   dataSource : new ListView.DataSource({
-      //     rowHasChanged : (r1 , r2) => ri!=r2
-      //   })
-      // };
-  },
+  gotoContractDetails(){
+    this.props.navigator.push({
+      screen: require('./ContractScreen')
+    })
+  }
+  constructor(props) {
+    super(props)
+    this.state = {
+      dataSource: ds.cloneWithRows(['row1', 'row 2'])
+    }
+  }
 
-  updateDataSource : function(data){
+  updateDataSource(data){
     this.setState({
       dataSource : this.state.dataSource.cloneWithRows(data)
     })
-  },
+  };
 
-  renderRow : function(){
+  renderRow(){
     return(
+      <TouchableOpacity style={styles.cot} onPress={() => this.gotoContractDetails()}>
       <View>
       <Cell
       left = {{text : '合同1' }}
-      right = {{text : '有效' ， style : {color : Yellow}}}
-      />
+      right = {{text : '有效' , style : {color : Yellow}}} />
+
       <Cell
       left = {{text : '2015.01.01-2016.01.01' }}
-      right = {{text : '有效' ， style : {color : Yellow}}}
+      right = {{text : '有效' , style : {color : Yellow}}}
       />
-      </View>
-      <View style = { styles.cellBorder } />
-      <View>
       <Cell
       left = {{text : '授信总额' }}
       right = {{text : '10000.00'}}
@@ -73,16 +73,18 @@ class ContractList extends Component {
       right = {{text : '按月等额本金'}}
       />
       </View>
+      </TouchableOpacity>
     );
-  }
+  };
   render() {
     return (
-      <ScrollView style={[styles.cot]}>
+      <View style={[styles.cot]}>
         <PAFFNavBar title={"我的合同"} onBackPressed={() => this.back()}/>
         <View style = { styles.container}>
-        <ListView dataSource = {this.state.dataSource} renderRow = {this.renderRow} />
+        <ListView dataSource = {this.state.dataSource}
+        renderRow = {this.renderRow} />
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }
@@ -92,7 +94,7 @@ module.exports = ContractList
 const styles = HFStyleSheet.create({
   cot: {
     flex: 1
-  }
+  },
   totalBox: {
     backgroundColor: Gray1,
     paddingHorizontal: ContainerNomalPadding,
