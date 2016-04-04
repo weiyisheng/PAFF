@@ -3,7 +3,7 @@ import React ,{
   Text ,
   ScrollView ,
   View
-} from react-native
+} from 'react-native'
 
 import PAFFNavBar    from 'PAFFNavBar'
 import Cell          from './components/Cell'
@@ -14,13 +14,13 @@ import { Red ,
          BorderBottom ,
          Yellow ,
          Yellow2
-      } from '../constants/color'
+      } from '../constants/colors'
 import { ContainerNomalPadding } from '../constants/dimens'
 
-class contractDetils extends components{
+class ContractDetilsScreen extends components{
     back() {
       this.props.navigator.pop()
-    },
+    };
     render() {
       return(
         <View style = {styles.cot}>
@@ -102,6 +102,8 @@ class contractDetils extends components{
   }
 }
 
+module.exports = ContractDetilsScreen
+
 const Style = HFStyleSheet.create({
   cot : {
     flex : 1
@@ -180,5 +182,3 @@ const Style = HFStyleSheet.create({
   }
 
 })
-
-module.exports = contractDetils

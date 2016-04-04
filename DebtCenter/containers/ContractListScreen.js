@@ -30,13 +30,14 @@ class ContractList extends Component {
     this.props.navigator.push({
       screen: require('./ContractScreen')
     })
-  }
+  };
+
   constructor(props) {
     super(props)
     this.state = {
       dataSource: ds.cloneWithRows(['row1', 'row 2'])
     }
-  }
+  };
 
   updateDataSource(data){
     this.setState({
@@ -47,32 +48,32 @@ class ContractList extends Component {
   renderRow(){
     return(
       <TouchableOpacity style={styles.cot} onPress={() => this.gotoContractDetails()}>
-      <View>
-      <Cell
-      left = {{text : '合同1' }}
-      right = {{text : '有效' , style : {color : Yellow}}} />
+        <View>
+          <Cell
+            left = {{text : '合同1' }}
+            right = {{text : '有效' , style : {color : Yellow}}}
+          />
 
-      <Cell
-      left = {{text : '2015.01.01-2016.01.01' }}
-      right = {{text : '有效' , style : {color : Yellow}}}
-      />
-      <Cell
-      left = {{text : '授信总额' }}
-      right = {{text : '10000.00'}}
-      />
-      <Cell
-      left = {{text : '待还款金额' }}
-      right = {{text : '10000.00'}}
-      />
-      <Cell
-      left = {{text : '可用金额' }}
-      right = {{text : '10000.00'}}
-      />
-      <Cell
-      left = {{text : '还款方式' }}
-      right = {{text : '按月等额本金'}}
-      />
-      </View>
+          <Cell
+            left = {{text : '2015.01.01-2016.01.01' }}
+          />
+          <Cell
+            left = {{text : '授信总额' }}
+            right = {{text : '10000.00'}}
+          />
+          <Cell
+            left = {{text : '待还款金额' }}
+            right = {{text : '10000.00'}}
+          />
+          <Cell
+            left = {{text : '可用金额' }}
+            right = {{text : '10000.00'}}
+          />
+          <Cell
+            left = {{text : '还款方式' }}
+            right = {{text : '按月等额本金'}}
+          />
+        </View>
       </TouchableOpacity>
     );
   };
