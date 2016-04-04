@@ -16,48 +16,47 @@ import HFStyleSheet from 'HFStyleSheet'
 //constants
 import { Gray1, BorderColor, Yellow, Blue } from '../constants/colors'
 
-class Contract extends Component {
+class ContractScreen extends Component {
 
   back() {
     this.props.navigator.pop()
-  },
+  };
+
   onContractDetailClick(){
     this.props.navigator.push({
-      screen: require('ContractDetailScreen')
+      screen: require('./ContractDetailsScreen')
     })
-  },
+  };
 
-  getInitialState : function(){
+  getInitialState(){
         var ds = new ListView.DataSource({
           rowHasChanged : (r1 , r2) => ri!=r2
         });
         return {
           dataSource: ds.cloneWithRows(['xiebo nihao 1', 'xiebo nihao 2']),
       };
-  },
+  };
 
-  updateDataSource : function(data){
+  updateDataSource(data){
     this.setState({
       dataSource : this.state.dataSource.cloneWithRows(data)
     })
-  },
+  };
 
-  renderRow : function(){
+  renderRow(){
     return(
       <View>
       <View style = { styles.container}>
       <Cell
       left = {{text : '借据1' }}
-      right = {{text : '未结清' ， style : {color : Red}}}
+      right = {{text : '未结清' , style : {colors : Red}}}
       />
       </View>
 
       <Cell
       left = {{text : '2015.01.01-2016.01.01' }}
       />
-      </View>
-      <View style = { styles.cellBorder } />
-      <View>
+      // <View style = { styles.cellBorder } />
       <Cell
       left = {{text : '借据总额' }}
       right = {{text : '10000.00'}}
@@ -72,10 +71,11 @@ class Contract extends Component {
       />
       </View>
     );
-  }
+  };
+
   render() {
     return (
-      <ScrollView style={[styles.cot]}>
+      <View style={[styles.cot]}>
         <PAFFNavBar title={"合同1"} onBackPressed={() => this.back()}
         right = {"合同详情"} onMenuSelected={() => this}/>
         <View style = { styles.container}>
@@ -103,21 +103,21 @@ class Contract extends Component {
               <Text style={[styles.buttonText]}>提前还款</Text>
             </View>
           </TouchableOpacity>
-        </View>
+
         </View>
         <ListView dataSource = {this.state.dataSource} renderRow = {this.renderRow} />
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }
 
-module.exports = ContractList
+module.exports = ContractScreen
 
 const styles = HFStyleSheet.create({
   cot: {
     flex: 1
-  }
+  },
   totalBox: {
     backgroundColor: Gray1,
     paddingHorizontal: ContainerNomalPadding,
