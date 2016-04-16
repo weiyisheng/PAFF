@@ -25,6 +25,13 @@ class Main extends Component {
     });
   }
 
+  gotoPro() {
+    this.props.navigator.push({
+     screen:'PropertyCenter.PropertyCenterScreen',
+     order:{}
+    });
+  }
+
   render() {
 
     return (
@@ -32,7 +39,7 @@ class Main extends Component {
         <TouchableOpacity style={[styles.button, styles.center]} onPress={() => this.gotoAddPro()}>
           <Text style={[styles.text]}>资产加挂</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.center, {marginTop: 30}]} onPress={() => this.gotoDebt()}>
+        <TouchableOpacity style={[styles.button, styles.center, {marginTop: 30}]} onPress={() => this.gotoPro()}>
           <Text style={[styles.text, styles.center]}>资产详情</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.button, styles.center, {marginTop: 30}]} onPress={() => this.gotoLoan()}>

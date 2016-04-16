@@ -12,6 +12,6 @@ var HFModuleManager = require('HFModuleManager');
 HFModuleManager.registerModule('LoanCenter', require('LoanCenter')); // 存贷通申请
 //HFModuleManager.registerModule('DebtCenter', require('DebtCenter')); //负债详情
 HFModuleManager.registerModule('AddProperty', require('AddProperty')); //资产加挂
-//HFModuleManager.registerModule('PropertyCenter', require('PropertyCenter')); //资产详情
+HFModuleManager.registerModule('PropertyCenter', require('PropertyCenter')); //资产详情
 
 HFModuleManager.registerModule('MainModule', require('MainModule')); //临时主页面
