@@ -18,15 +18,28 @@ class Main extends Component {
     });
   }
 
+  gotoAddPro() {
+    this.props.navigator.push({
+     screen:'AddProperty.AddPropertyScreen',
+     order:{}
+    });
+  }
+
   render() {
 
     return (
       <View style={[styles.center, { flex: 1}]}>
-        <TouchableOpacity style={[styles.button, styles.center]} onPress={() => this.gotoDebt()}>
-          <Text style={[styles.text, styles.center]}>负债</Text>
+        <TouchableOpacity style={[styles.button, styles.center]} onPress={() => this.gotoAddPro()}>
+          <Text style={[styles.text]}>资产加挂</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, styles.center, {marginTop: 30}]} onPress={() => this.gotoDebt()}>
+          <Text style={[styles.text, styles.center]}>资产详情</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.button, styles.center, {marginTop: 30}]} onPress={() => this.gotoLoan()}>
-          <Text style={[styles.text]}>存贷通</Text>
+          <Text style={[styles.text]}>存贷通(申请)</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, styles.center, {marginTop: 30}]} onPress={() => this.gotoLoan()}>
+          <Text style={[styles.text]}>存贷通(还款)</Text>
         </TouchableOpacity>
       </View>
     )
