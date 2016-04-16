@@ -49,45 +49,45 @@ const LoanDetailScreen = React.createClass({
           <View style={[styles.cellBox]}>
             <ContentCenterCell
               style={styles.cell}
-              lable={{text: "借款金额"}}
+              lable={{text: "借款金额", style: {width: 140}}}
               content={{text: "5,001.00"}}/>
 
             <ContentCenterCell
               style={styles.cell}
-              lable={{text: "借据状态"}}
+              lable={{text: "借据状态", style: {width: 140}}}
               content={(<View style={{flex: 1}}>
-                <Text style={styles.statusContent}>
+                <Text style={[styles.statusContent, styles.customCellMarginTop]}>
                   逾期未还
                   <Text style={[styles.statusContent, TextColorBlack]}>(本息合计)</Text>
                 </Text>
-                <Text style={[TextColorBlack, styles.statusNum]}>240,0000.00</Text>
+                <Text style={[TextColorBlack, styles.statusNum, styles.customCellMarginBottom]}>240,0000.00</Text>
               </View>)}/>
 
               <ContentCenterCell
                 style={styles.cell}
-                lable={{text: "还款方式"}}
+                lable={{text: "还款方式", style: {width: 140}}}
                 content={{text: "按月等额本息"}}/>
 
               <ContentCenterCell
                 style={styles.cell}
-                lable={{text: "还款方式"}}
+                lable={{text: "还款方式", style: {width: 140}}}
                 content={{text: "按月等额本息"}}/>
 
               <ContentCenterCell
                 style={styles.cell}
-                lable={{text: "起止日期"}}
+                lable={{text: "起止日期", style: {width: 140}}}
                 content={{text: "2015.06.12-2016.06.12"}}/>
 
               <ContentCenterCell
                 style={styles.cell}
-                lable={{text: "下期还款日期"}}
+                lable={{text: "下期还款日期", style: {width: 140}}}
                 content={{text: "4月20日"}}/>
 
               <ContentCenterCell
                 style={styles.cell}
-                lable={{text: "下期待还本金"}}
-                content={<View>
-                  <Text style={[styles.statusContent, TextColorBlack]}>
+                lable={{text: "下期待还本金", style: {width: 140}}}
+                content={<View style={{flex: 1}}>
+                  <Text style={[styles.statusContent, TextColorBlack, styles.customCellMarginTop, styles.customCellMarginBottom]}>
                     400,001.00
                     <Text style={[styles.statusContent, TextColorGray]}>(含逾期)</Text>
                   </Text>
@@ -95,9 +95,9 @@ const LoanDetailScreen = React.createClass({
 
               <ContentCenterCell
                 style={styles.cell}
-                lable={{text: "下期待还利息"}}
-                content={<View>
-                  <Text style={[styles.statusContent, TextColorBlack]}>
+                lable={{text: "下期待还利息", style: {width: 140}}}
+                content={<View style={{flex: 1}}>
+                  <Text style={[styles.statusContent, TextColorBlack, styles.customCellMarginTop, styles.customCellMarginBottom]}>
                     100,00.00
                     <Text style={[styles.statusContent, TextColorGray]}>(含逾期)</Text>
                   </Text>
@@ -105,12 +105,12 @@ const LoanDetailScreen = React.createClass({
 
                 <ContentCenterCell
                   style={styles.cell}
-                  lable={{text: "还款账户"}}
+                  lable={{text: "还款账户", style: {width: 140}}}
                   content={{text: "泸州商业银行(734)"}}/>
 
                 <ContentCenterCell
                   style={[styles.cell, {borderBottomWidth: 0}]}
-                  lable={{text: "扣款方式"}}
+                  lable={{text: "扣款方式", style: {width: 140}}}
                   content={{text: "自动扣款"}}/>
           </View>
         </ScrollView>
@@ -169,10 +169,11 @@ const styles = HFStyleSheet.create({
     marginTop: 13,
     borderBottomWidth: 1,
     borderBottomColor: BorderColor,
-    marginBottom: 20
+    marginBottom: 20,
+    borderTopWidth: 1,
+    borderTopColor: BorderColor
   },
   cell: {
-    paddingVertical: 18,
     marginLeft: 18,
     borderBottomWidth: 1,
     borderBottomColor: BorderColor
@@ -186,5 +187,11 @@ const styles = HFStyleSheet.create({
     exclude: ["fontSize"],
     fontSize: 16,
     marginTop: 10
+  },
+  customCellMarginTop: {
+    marginTop: 16
+  },
+  customCellMarginBottom: {
+    marginBottom: 16
   }
 })

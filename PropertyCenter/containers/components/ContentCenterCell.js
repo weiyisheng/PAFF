@@ -41,7 +41,7 @@ const styles = HFStyleSheet.create({
     fontSize: 18,
   },
   lable: {
-    width: 150,
+    width: 110,
     marginVertical: 18
   },
   content: {

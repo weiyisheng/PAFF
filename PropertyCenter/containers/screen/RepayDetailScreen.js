@@ -5,7 +5,6 @@ const { View, StyleSheet, Text, ScrollView } = React
 import PAFFNavBar from 'PAFFNavBar'
 import HFStyleSheet from 'HFStyleSheet'
 import Button from '../components/Button'
-import Cell from '../components/Cell'
 //constants
 import { Red, BorderColor, Yellow, ContainerBackgroundColor,
   TextColorBlack, TextColorGray } from '../../constants/colors'

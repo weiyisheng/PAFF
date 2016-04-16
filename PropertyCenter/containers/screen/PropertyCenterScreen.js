@@ -21,6 +21,27 @@ const PropertyCenterScreen = React.createClass({
     });
   },
 
+  gotoBank() {
+    this.props.navigator.push({
+     screen: require('./BankCardDetailScreen'),
+     order:{}
+    });
+  },
+
+  gotoCerti() {
+    this.props.navigator.push({
+     screen: require('./CertifyDetailScreen'),
+     order:{}
+    });
+  },
+
+  gotoIOU() {
+    this.props.navigator.push({
+     screen: require('./IOUDetailScreen'),
+     order:{}
+    });
+  },
+
   render() {
 
     return (
@@ -30,21 +51,22 @@ const PropertyCenterScreen = React.createClass({
           onBackPressed={() => this.back()}/>
         <ScrollView
           style={[{flex: 1}, ContainerBackgroundColor]}>
-          <TouchableOpacity style={[styles.button, styles.center, {marginTop: 20}]} onPress={() => this.gotoLoan()}>
-            <Text style={[styles.text]}>存贷通详情</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.center, {marginTop: 20}]} onPress={() => this.gotoLoan()}>
-            <Text style={[styles.text]}>还款详情</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.center, {marginTop: 20}]} onPress={() => this.gotoLoan()}>
-            <Text style={[styles.text]}>银行卡详情</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.center, {marginTop: 20}]} onPress={() => this.gotoLoan()}>
-            <Text style={[styles.text]}>存单详情</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.center, {marginTop: 20}]} onPress={() => this.gotoLoan()}>
-            <Text style={[styles.text]}>借据详情</Text>
-          </TouchableOpacity>
+          <View style={styles.center}>
+
+            <TouchableOpacity style={[styles.button, styles.center, {marginTop: 20}]} onPress={() => this.gotoLoan()}>
+              <Text style={[styles.text]}>存贷通详情</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.button, styles.center, {marginTop: 20}]} onPress={() => this.gotoBank()}>
+              <Text style={[styles.text]}>银行卡详情</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.button, styles.center, {marginTop: 20}]} onPress={() => this.gotoCerti()}>
+              <Text style={[styles.text]}>存单详情</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.button, styles.center, {marginTop: 20}]} onPress={() => this.gotoIOU()}>
+              <Text style={[styles.text]}>借据详情</Text>
+            </TouchableOpacity>
+          </View>
+
         </ScrollView>
       </View>
     )

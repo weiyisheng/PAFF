@@ -1,5 +1,5 @@
 module.exports = {
-  Red: '#e60012',
+  Red: '#f22222',
   Yellow: '#fdf8e2',
   ContainerBackgroundColor: {
     backgroundColor: '#f8f8f8'
