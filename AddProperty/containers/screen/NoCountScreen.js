@@ -29,7 +29,7 @@ const NoCountScene = React.createClass({
           <Text style={[styles.infoText]}>
             您的行内资产都已添加成功</Text>
 
-          <TouchableOpacity>
+          <TouchableOpacity activeOpacity={1}>
             <View style={[styles.knowBtnBox]}>
               <Text style={[styles.knowBtnText]}>知道了</Text>
             </View>

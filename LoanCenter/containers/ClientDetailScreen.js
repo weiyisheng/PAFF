@@ -11,24 +11,48 @@ import Modal from './components/ModalBox'
 
 import CommonModal from './components/CommonModal'
 
-import { Red, Gray1, Gray2, Gray3, WindowWidth, TextColorBlack } from '../constants/StyleConstants'
+import { Red, Gray1, Gray2, Gray3, WindowWidth, TextColorBlack, NextBtn, Blue } from '../constants/StyleConstants'
 
-let selectedColor = { backgroundColor: '#fff' }
+class StatusItem extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      selected: false
+    }
+  }
+
+  render() {
+    let [ selectedColor, selectedTextColor ]= [ { backgroundColor: '#f9f9f9' }, {color: '#262626'} ]
+    if (this.props.chose) {
+      [ selectedColor, selectedTextColor ]= [ { backgroundColor: '#fff' }, {color: Blue} ]
+    }
+    return (
+      <TouchableOpacity style={[styles.statusItem,selectedColor]} onPress={() => this.props.selectStatus(this.props.value)}>
+        <Text style={[styles.textItem,selectedTextColor]}>{this.props.value}</Text>
+      </TouchableOpacity>
+    )
+  }
+}
 
 class ClientDetail extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      showStatusModal: false
+      showStatusModal: false,
+      currentStatus: '未婚',
+      selectedStatus: '未婚'
     }
   }
+
 
   goToSelectAssets() {
     this.props.navigator.push({
       screen: require('./SelectAssetsScreen')
     })
   }
+
 
   renderSelectStatusIcon() {
     return (
@@ -40,29 +64,53 @@ class ClientDetail extends React.Component {
     )
   }
 
+  renderSelectEdcuationIcon() {
+    return (
+      <TouchableOpacity
+        style={styles.selectStatusIcon}>
+        <Image source={require('./img/common_inputbox_ic_drop_down.png')}/>
+      </TouchableOpacity>
+    )
+  }
+
+  saveStatus() {
+    this.setState({ currentStatus: this.state.selectedStatus})
+    this.commonModal.close()
+  }
+
   render() {
+    let statuData = ['已婚', '未婚', '离异', '丧偶']
     return (
       <View style={styles.ClientDetailContainer}>
         <PAFFNavBar
           title={'客户信息'}
           onBackPressed={() => this.props.navigator.pop()}/>
-        <View style={styles.annualIncomeBox}>
-          <PAFFTextInput
-            style={styles.annualIncomeInput}
-            placeholder={"年收入"}/>
-        </View>
         <View style={styles.maritalStatusBox}>
           <PAFFTextInput
             style={styles.maritalStatusInput}
-            placeholder={"选择婚姻状况"}
-            renderRight={() => this.renderSelectStatusIcon()}/>
+            value={this.state.currentStatus}
+            renderRight={() => this.renderSelectStatusIcon()}
+            placeholder={'婚姻状况'}/>
+        </View>
+        <View style={styles.educationBox}>
+          <PAFFTextInput
+            style={styles.educationBoxInput}
+            placeholder={"最高学历"}
+            value={'本科'}
+            renderRight={() => this.renderSelectEdcuationIcon()}/>
+        </View>
+        <View style={styles.contactAddressBox}>
+          <PAFFTextInput
+            style={styles.contactAddressBoxInput}
+            placeholder={'通讯地址'}
+            value={'上海市徐汇区龙华中路32号201'}/>
         </View>
         <View style={styles.confirmBtnBox}>
           <PAFFButton
             text={'确认'}
             themeColor={'#fff'}
-            style={styles.confirmBtn}
-            onPress={() => this.goToSelectAssets()}/>
+            style={NextBtn}
+            onPress={() => {}}/>
         </View>
         <Modal style={[styles.ModalContainer]}
           backdrop={true}
@@ -73,31 +121,47 @@ class ClientDetail extends React.Component {
           animationDuration={400}
           >
           <View>
-            <View>
+            <View style={styles.modalHeader}>
               <Text style={styles.modalTitle}>选择婚姻状况</Text>
               <TouchableOpacity
                 style={[styles.modalBtn, styles.leftBtn]}
                 onPress={() => this.commonModal.close()}>
                 <Text style={styles.modalBtnText}>取消</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.modalBtn, styles.rightBtn]}>
+              <TouchableOpacity style={[styles.modalBtn, styles.rightBtn]} onPress={() => this.saveStatus()}>
                 <Text style={styles.modalBtnText}>保存</Text>
               </TouchableOpacity>
             </View>
-            <View style={styles.border}/>
             <View style={styles.statusItemBox}>
-              <TouchableOpacity style={styles.statusItem}>
+              {(() => {
+                return (
+                  statuData.map( (n, index) => {
+                    let choose = false
+                    if (this.state.selectedStatus == n) {
+                      choose = true
+                    }
+                    return (
+                      <StatusItem
+                        key={index}
+                        value={n}
+                        chose={choose}
+                        selectStatus={(value) => this.setState({selectedStatus: value})}/>
+                    )
+                  })
+                )
+              })()}
+              {/*<TouchableOpacity style={styles.statusItem} selected={false}>
                 <Text style={[styles.textItem]}>已婚</Text>
               </TouchableOpacity>
               <TouchableOpacity style={[styles.statusItem,selectedColor]}>
-                <Text style={[styles.textItem]}>未婚</Text>
+                <Text style={[styles.textItem,selectedTextColor]}>未婚</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.statusItem}>
                 <Text style={[styles.textItem]}>离异</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.statusItem}>
                 <Text style={[styles.textItem]}>丧偶</Text>
-              </TouchableOpacity>
+              </TouchableOpacity>*/}
             </View>
           </View>
         </Modal>
@@ -108,85 +172,78 @@ class ClientDetail extends React.Component {
 
 const styles = HFStyleSheet.create({
   ClientDetailContainer: {
-    flex: 1
-  },
-  annualIncomeBox: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 20
-  },
-  annualIncomeInput: {
-    zoom: 'both',
-    width: 300
+    flex: 1,
+    backgroundColor: '#fff'
   },
   maritalStatusBox: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20
+    marginTop: 44
   },
   maritalStatusInput: {
-    zoom: 'both',
-    width: 300
+    width: 324
+  },
+  educationBox: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 24
+  },
+  educationBoxInput: {
+    width: 324
+  },
+  contactAddressBox: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 24
+  },
+  contactAddressBoxInput: {
+    width: 324
   },
   confirmBtnBox: {
-    marginTop: 50,
+    marginTop: 114,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  confirmBtn: {
-    zoom: 'both',
-    exclude: ['height'],
-    width: 220,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: Red
-  },
   ModalContainer: {
-    height: 350
+    height: 270
+  },
+  modalHeader: {
+    height: 55
   },
   modalBtn: {
-    paddingVertical: 18,
-    paddingHorizontal: 10,
     position: "absolute",
-    top: 0
+    top: 18
   },
   leftBtn: {
-    left: 0
+    left: 17
   },
   rightBtn: {
-    right: 0
+    right: 17
   },
   modalBtnText: {
     exclude: ["fontSize"],
-    fontSize: 14
+    fontSize: 18
   },
   modalTitle: {
     exclude: ["fontSize"],
-    fontSize: 16,
+    fontSize: 20,
     textAlign: "center",
-    marginTop: 17
-  },
-  border: {
-    height: 1,
-    marginTop: 16,
-    backgroundColor: Gray2
+    marginTop: 18
   },
   statusItemBox: {
-    height: 300,
-    paddingTop: 40,
-    backgroundColor: Gray1
+    height: 215,
+    backgroundColor: '#f9f9f9'
   },
   statusItem: {
     exclude: ['width'],
-    marginTop: 12,
-    paddingVertical: 8,
+    height: 54,
     width: WindowWidth,
     justifyContent: 'center',
     alignItems: 'center'
   },
   textItem: {
     exclude: ['fontSize'],
-    fontSize: 18,
+    fontSize: 20,
     color: '#262626',
     opacity: 0.8
   }

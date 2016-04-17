@@ -17,6 +17,13 @@ const PropertyCenterScreen = React.createClass({
     this.props.navigator.pop()
   },
 
+  gotoResult() {
+    this.props.navigator.push({
+     screen: require('./LoanResultScreen'),
+     order:{}
+    });
+  },
+
   render() {
 
     return (
@@ -78,7 +85,8 @@ const PropertyCenterScreen = React.createClass({
           <Button
             btnText={"还款"}
             btnStyle={styles.repayBtn}
-            cotStyle={styles.repayBtnCot}/>
+            cotStyle={styles.repayBtnCot}
+            onPress={() => this.gotoResult()}/>
         </ScrollView>
       </View>
     )

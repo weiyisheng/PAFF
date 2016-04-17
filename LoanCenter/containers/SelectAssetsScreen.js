@@ -4,31 +4,64 @@ import PAFFNavBar from 'PAFFNavBar'
 import HFStyleSheet from 'HFStyleSheet'
 import PAFFButton from 'PAFFButton'
 
-import { BorderBottom, TextColorBlack, WindowHeight, HeightScale, NextBtn } from '../constants/StyleConstants'
+import { BorderBottom, TextColorBlack, WindowHeight,
+   HeightScale, NextBtn, Gray1, TextColorLightBlack } from '../constants/StyleConstants'
 
 let data = [
-   {
-    itemName: '银行卡',
-    iteminfo: [
-      {cardName: '快乐金20140513XXX',cardMoney: '￥2400.00', cardDate: '2014.09-2016.09'},
-      {cardName: '快乐金20140513XXX',cardMoney: '￥2400.00',cardDate: '2014.09-2016.09'}
-    ]
-  },
-  {
-   itemName: '存单',
-   iteminfo: [
-     {cardName: '快乐金20140513XXX',cardMoney: '￥2400.00', cardDate: '2014.09-2016.09'},
-     {cardName: '快乐金20140513XXX',cardMoney: '￥2400.00', cardDate: '2014.09-2016.09'}
+     {id: 1, cardName: '快乐金20140513XXX', borrowMoney: '￥100000.00', cardMoney: '￥2400.00', cardDate: '2014.09.12-2016.09.18'},
+     {id: 2, cardName: '快乐金20140513XXX', borrowMoney: '￥100000.00', cardMoney: '￥2400.00', cardDate: '2014.09.12-2016.09.18'},
+     {id: 3, cardName: '快乐金20140513XXX', borrowMoney: '￥100000.00', cardMoney: '￥2400.00', cardDate: '2014.09.12-2016.09.18'}
    ]
- }
-]
+
+
+class AssetsItem extends React.Component {
+
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    let {item} = this.props
+    return (
+      <View style={styles.assetsItemContainer}>
+          <View style={styles.assetsItem}>
+            <View style={styles.assetsItemInfo}>
+              <View>
+                {(() => {
+                  if (this.props.choose) {
+                    return <Image style={styles.selectedImage} source={require('./img/common_check_box_checked.png')}/>
+                  } else {
+                    return <Image style={styles.selectedImage} source={require('./img/common_check_box_unchecked.png')}/>
+                  }
+                })()}
+              </View>
+              <TouchableOpacity onPress={() => this.props.selectItem(item.id)}>
+                <Text style={[TextColorLightBlack, styles.cardName]}>{item.cardName}</Text>
+                <Text style={[TextColorLightBlack, styles.cardDate]}>{item.cardDate}</Text>
+                <View style={styles.borrowMoneyBox}>
+                  <Text style={[TextColorLightBlack, styles.borrowMoneyText]}>可借金额</Text>
+                  <Text style={[TextColorBlack, styles.borrowMoney]}>{item.borrowMoney}</Text>
+                </View>
+                <View style={styles.cardMoneyBox}>
+                  <Text style={[TextColorLightBlack, styles.cardMoneyText]}>存款金额</Text>
+                  <Text style={[TextColorLightBlack, styles.cardMoney]}>{item.cardMoney}</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.border}/>
+      </View>
+    )
+  }
+}
 
 class SelectAssetsScreen extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+      dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+      currentItem: 0  // currentItem <-> Id
     }
   }
 
@@ -39,47 +72,30 @@ class SelectAssetsScreen extends React.Component {
   }
 
   _renderRow(n) {
-    return (
-        <View style={styles.assetsItemContainer} key={n.itemName}>
-          <View style={styles.itemNameBox}>
-            <Text style={[TextColorBlack,styles.itemName]}>{n.itemName}</Text>
-          </View>
-          <View style={styles.border}/>
-          {(() => {
-            return n.iteminfo.map( (i,index) => {
-              return (
-                <View style={styles.assetsItemBox} key={index}>
-                  <View style={styles.assetsItem}>
-                    <View style={styles.assetsItemInfo}>
-                      <TouchableOpacity>
-                        <Image style={styles.selectedImage} source={require('./img/common_code_ic_selected_disable.png')}/>
-                      </TouchableOpacity>
-                      <Text style={[TextColorBlack, styles.cardName]}>{i.cardName}</Text>
-                      <Text style={[TextColorBlack, styles.cardMoney]}>{i.cardMoney}</Text>
-                    </View>
-                    <Text style={[TextColorBlack, styles.cardDate]}>{i.cardDate}</Text>
-                  </View>
-                  <View style={styles.border}/>
-                </View>
-              )
-            })
-          })()}
-        </View>
-     )
+    let choose = false
+    if (this.state.currentItem && this.state.currentItem === n.id) {
+      choose = true
+    }
+    return <AssetsItem
+             key={n.id}
+             item={n}
+             choose={choose}
+             selectItem={(id) => this.setState({currentItem: id})}/>
   }
 
   render() {
     return(
       <View>
         <PAFFNavBar
-          title={"选择可抵押的资产"}
+          title={"选择可质押的资产"}
           onBackPressed={() => this.props.navigator.pop()}
-          onMenuSelected={() => this.goToLoanApplied()}
-          menuIcons={[require('./img/common_card_assembly_ic_add.png')]}/>
+          onMenuSelected={() => {}}
+          menuIcons={[require('./img/common_title_ic_add.png')]}/>
         <ScrollView style={styles.scrollViewStyle}>
+          <View style={styles.weightBorder}/>
           <ListView
               dataSource={this.state.dataSource.cloneWithRows(data)}
-              renderRow={this._renderRow}
+              renderRow={(n) => this._renderRow(n)}
           />
           <View style={styles.btnBox}>
             <PAFFButton
@@ -87,7 +103,7 @@ class SelectAssetsScreen extends React.Component {
                 text={'下一步'}
                 style={NextBtn}
                 themeColor={'#e0e0e0'}
-                onPress={() => {}}/>
+                onPress={() => {this.goToLoanApplied()}}/>
           </View>
         </ScrollView>
       </View>
@@ -100,21 +116,6 @@ const styles = HFStyleSheet.create({
     exclude: ['height'],
     height: Platform.OS === 'ios' ? WindowHeight - 64 : WindowHeight - 56 - 24 * HeightScale
   },
-  assetsItemContainer: {
-
-  },
-  itemNameBox: {
-    marginLeft: 14,
-    marginTop: 20,
-    marginBottom: 20
-  },
-  itemName: {
-    exclude: ['fontSize'],
-    fontSize: 15
-  },
-  assetsItemBox: {
-
-  },
   assetsItem: {
     paddingVertical: 20,
     paddingLeft: 16
@@ -125,19 +126,40 @@ const styles = HFStyleSheet.create({
   selectedImage: {
     width: 20,
     height: 20,
-    marginRight: 10,
+    marginRight: 14,
   },
   cardName: {
-    zoom: 'both',
-    width: 220,
-    marginBottom: 4
+    width: 280,
+    exclude: ['fontSize'],
+    fontSize: 16
+  },
+  borrowMoneyBox: {
+    flexDirection: 'row',
+    marginTop: 12
+  },
+  cardMoneyBox: {
+    flexDirection: 'row',
+    marginTop: 6
+  },
+  borrowMoneyText: {
+    alignSelf: 'center',
+    marginRight: 6
+  },
+  borrowMoney: {
+    width: 280,
+    exclude: ['fontSize'],
+    fontSize: 20
+  },
+  cardMoneyText: {
+    marginRight: 6
   },
   cardMoney: {
-
+    width: 280,
   },
   cardDate: {
+    marginTop: 6,
+    width: 280,
     exclude: ['fontSize'],
-    marginLeft: 36,
     fontSize: 12
   },
   btnBox: {
@@ -145,9 +167,14 @@ const styles = HFStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  weightBorder: {
+    backgroundColor: '#e0e0e0',
+    opacity: 0.7,
+    height: 14
+  },
   border: {
-    backgroundColor: "#e0e0e0",
-    height: 2
+    height: 1,
+    backgroundColor: Gray1
   }
 })
 

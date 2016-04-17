@@ -4,7 +4,7 @@ import React, { Component, View,
   ScrollView, Text } from 'react-native'
 import PAFFNavBar from 'PAFFNavBar'
 import HFStyleSheet from 'HFStyleSheet'
-import Loading from 'PALoading'
+import PALoading from 'PALoading'
 import HasCountScreen from './HasCountScreen'
 import NoCountScreen from './NoCountScreen'
 
@@ -14,8 +14,8 @@ class AddPropertyScreen extends Component{
   constructor(props) {
     super(props)
     this.state = {
-      fetchLoading: false,
-      sceneTag: SCENE_TAG_HAS_COUNT
+      fetchLoading: true,
+      sceneTag: SCENE_TAG_NO_COUNT
     }
   }
 
@@ -27,9 +27,7 @@ class AddPropertyScreen extends Component{
         {
           (() => {
             if(fetchLoading) {
-              return (
-                <Loading />
-              )
+              PALoading.showLoading(" ")
             } else {
 
               if(sceneTag === SCENE_TAG_NO_COUNT) {

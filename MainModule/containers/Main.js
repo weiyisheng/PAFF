@@ -45,9 +45,6 @@ class Main extends Component {
         <TouchableOpacity style={[styles.button, styles.center, {marginTop: 30}]} onPress={() => this.gotoLoan()}>
           <Text style={[styles.text]}>存贷通(申请)</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.center, {marginTop: 30}]} onPress={() => this.gotoLoan()}>
-          <Text style={[styles.text]}>存贷通(还款)</Text>
-        </TouchableOpacity>
       </View>
     )
   }
