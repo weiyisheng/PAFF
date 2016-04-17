@@ -1,5 +1,5 @@
 const React = require('react-native')
-const { Dimensions } = React
+const { Dimensions, PixelRatio } = React
 
 let{ width, height } = Dimensions.get('window')
 let widthScale = width / 375
@@ -8,11 +8,13 @@ let heightScale = height / 667
 module.exports = {
   Black: "#101010",
   Yellow: "#E97000",
-  Red: "#E10202",
-  Blue: "#19AAB8",
+  Red: "#E60012",
+  Blue: "#3399ff",
   DarkBlue: "#4876FF",
-  Gray1: "#f4f4f4",
-  Gray2: "#dadada",
+  LightBlue: "#CCFFFF",
+  LightGreen: "#336633",
+  Gray1: "#e0e0e0",
+  Gray2: "#D7D7D7",
   Gray3: "#c1c1c1",
   Gray4: "#787878",
   BorderColor: "#dadada",
@@ -46,13 +48,41 @@ module.exports = {
     borderRightColor: '#e0e0e0'
   },
   TextColorBlack: {
-    opacity: 0.9,
-    color: '#262626'
+    color: '#333333'
+  },
+  TextColorLightBlack: {
+    color: '#999999'
   },
   NextBtn: {
-    width: 260 * widthScale,
-    height: 54 * heightScale,
-    borderRadius: 27 * heightScale,
-    backgroundColor: "#EEB422"
+    width: 240 * widthScale,
+    height: 49 * heightScale,
+    borderRadius: 24.5 * heightScale,
+    backgroundColor: "#E60012"
+  },
+  NextBtnShort: {
+    width: 146 * widthScale,
+    height: 44 * heightScale,
+    borderRadius: 22 * heightScale,
+    backgroundColor: "#E60012"
+  },
+  RenturnBtnShort: {
+    width: 146 * widthScale,
+    height: 44 * heightScale,
+    borderRadius: 22 * heightScale,
+    backgroundColor: "#3399ff"
+  },
+  NextBtnNoBgColor: {
+    width: 240 * widthScale,
+    height: 49 * heightScale,
+    borderColor: "#E60012",
+    borderWidth: 1 / PixelRatio.get(),
+    borderRadius: 24.5 * heightScale,
+  },
+  NextBtnNoBgColorShort: {
+    width: 146 * widthScale,
+    height: 44 * heightScale,
+    borderColor: "#E60012",
+    borderWidth: 1 / PixelRatio.get(),
+    borderRadius: 22 * heightScale,
   }
 }

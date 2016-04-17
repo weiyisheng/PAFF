@@ -36,24 +36,16 @@ class LoanAppliedScreen extends React.Component {
         <PAFFNavBar
           title={"贷款申请"}
           onBackPressed={() => this.props.navigator.pop()}/>
-        <View style={styles.mortgageLendingBox}>
-          <Text style={[TextColorBlack,styles.mortgageLending]}>质押存款</Text>
-          <Text style={[TextColorBlack,styles.mortgageLendingInfo]}>快乐金20140513XXX ￥2400.00</Text>
+        <View style={styles.borrowMoneyBox}>
+          <Text style={[TextColorBlack,styles.borrowMoneyText]}>可借金额</Text>
+          <Text style={[TextColorBlack,styles.borrowMoney]}>￥100000.00</Text>
         </View>
-        <View style={styles.maxLoanBox}>
-          <Text style={[TextColorBlack,styles.maxLoan]}>最高贷款额度</Text>
-          <Text style={[TextColorBlack,styles.maxLoanInfo]}>￥1230.00</Text>
-        </View>
-        <View style={styles.loanDeadTimeBox}>
-          <Text style={[TextColorBlack,styles.loanDeadTime]}>贷款有效截止日期</Text>
-          <Text style={[TextColorBlack,styles.loanDeadTimeInfo]}>2019.02.14</Text>
-        </View>
-        <View style={styles.selectRepaymentBox}>
+        <View style={styles.borrowMoneyInputBox}>
           <PAFFTextInput
-            style={styles.selectRepayment}
-            placeholder={"选择还款方式"}
-            renderRight={() => this.renderSelectRepaymentIcon()}/>
+            style={styles.borrowMoneyInput}
+            placeholder={"借款金额"}/>
         </View>
+        <Text style={[styles.label]}>允许单笔借款金额为xx-xxxx元</Text>
         <View style={styles.btnBox}>
           <PAFFButton
               type={'text'}
@@ -106,7 +98,21 @@ class LoanAppliedScreen extends React.Component {
 
 const styles = HFStyleSheet.create({
   LoanAppliedContainer: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#fff'
+  },
+  borrowMoneyBox: {
+    alignItems: 'center'
+  },
+  borrowMoneyText: {
+    textAlign: 'center',
+    marginTop: 30,
+    marginBottom: 4
+  },
+  borrowMoney: {
+    textAlign: 'center',
+    exclude: ['fontSize'],
+    fontSize: 24
   },
   mortgageLendingBox: {
     justifyContent: 'center',
@@ -148,15 +154,20 @@ const styles = HFStyleSheet.create({
     color: TextYellow,
     fontSize: 24
   },
-  selectRepaymentBox: {
+  borrowMoneyInputBox: {
     zoom: 'both',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 50
   },
-  selectRepayment: {
-    zoom: 'both',
-    width: 300
+  borrowMoneyInput: {
+    width: 324
+  },
+  label: {
+    marginLeft: 20,
+    marginTop: 4,
+    color: '#333',
+    opacity: 0.7
   },
   selectRepaymentIcon: {
     width: 20,
@@ -164,8 +175,7 @@ const styles = HFStyleSheet.create({
     backgroundColor: 'red'
   },
   btnBox: {
-    zoom: 'both',
-    marginTop: 90,
+    marginTop: 50,
     justifyContent: 'center',
     alignItems: 'center'
   },
