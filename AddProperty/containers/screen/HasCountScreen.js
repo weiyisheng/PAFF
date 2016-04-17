@@ -13,6 +13,9 @@ import { Red, Yellow, ContainerBackgroundColor, TextColorBlack } from '../../con
 import { COUNT_TYPE_DEBIT_CARD, COUNT_TYPE_PASS_BOOK,
   COUNT_TYPE_DEPOSIT_RECEIPT } from '../../constants/normal'
 
+// net work request
+import { RepayMethodData } from '../../actions/requestDataAction'
+import { NetWorkURL } from '../../actions/urlmanager'
 const HasCountScene = React.createClass({
 
   back() {
@@ -25,6 +28,10 @@ const HasCountScene = React.createClass({
 
   closeModal(){
     this.successModal.close()
+  },
+
+  componentDidMount() {
+    RepayMethodData(NetWorkURL.custUnAddAccListURL, )
   },
 
   render() {
