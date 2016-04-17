@@ -81,7 +81,7 @@ const HasCountScene = React.createClass({
           backdropOpacity={.5}
           animationDuration={200}>
           <View>
-            <View style={styles.infoBox}>
+            <View style={styles.modalInfoBox}>
               <Text style={[TextColorBlack, styles.infoModalText]}>
                 账户关联成功
               </Text>
@@ -108,7 +108,7 @@ const HasCountScene = React.createClass({
           backdropOpacity={.5}
           animationDuration={200}>
           <View>
-            <View style={styles.infoBox}>
+            <View style={styles.modalInfoBox}>
               <Text style={[TextColorBlack, styles.infoModalText]}>
                 账户关联失败
               </Text>
@@ -179,7 +179,7 @@ const styles = HFStyleSheet.create({
   modalInfofail: {
     height: 210
   },
-  infoBox: {
+  modalInfoBox: {
     marginTop: 30,
     marginBottom: 30,
   },

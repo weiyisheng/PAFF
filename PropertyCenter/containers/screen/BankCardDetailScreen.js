@@ -168,18 +168,18 @@ const styles = HFStyleSheet.create({
   titleLable: {
     exclude: ["fontSize"],
     fontSize: 16,
-    marginTop: 10
+    marginTop: 13
   },
   titleNum: {
     exclude: ["fontSize"],
     fontSize: 20,
-    marginBottom: 10,
+    marginBottom: 13,
     marginTop: 7
   },
   titleExp: {
     exclude: ["fontSize"],
     position: 'absolute',
-    top: 25,
+    top: 27,
     right: 18,
     fontSize: 18
   },

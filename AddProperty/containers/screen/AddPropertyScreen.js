@@ -15,7 +15,7 @@ class AddPropertyScreen extends Component{
     super(props)
     this.state = {
       fetchLoading: false,
-      sceneTag: SCENE_TAG_NO_COUNT
+      sceneTag: SCENE_TAG_HAS_COUNT
     }
   }
 

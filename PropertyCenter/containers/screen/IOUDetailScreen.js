@@ -16,22 +16,13 @@ const IOUDetailScreen = React.createClass({
     this.props.navigator.pop()
   },
 
-  gotoRepay() {
-    this.props.navigator.push({
-     screen: require('./RepayDetailScreen'),
-     order:{}
-    });
-  },
-
   render() {
 
     return (
       <View style={[{flex: 1}, ContainerBackgroundColor]}>
         <PAFFNavBar
           title={" "}
-          onBackPressed={() => this.back()}
-          menuIcons={[{type: "more"}]}
-          onMenuSelected={() => this.gotoRepay()}/>
+          onBackPressed={() => this.back()}/>
         <ScrollView
           style={[{flex: 1}, ContainerBackgroundColor]}>
           <View style={[styles.titleBox]}>
