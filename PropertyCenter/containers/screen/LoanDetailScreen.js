@@ -23,6 +23,13 @@ const LoanDetailScreen = React.createClass({
     });
   },
 
+  gotoLoanRepay() {
+    this.props.navigator.push({
+     screen: require('./LoanRepayScreen'),
+     order:{}
+    });
+  },
+
   render() {
 
     return (
@@ -43,7 +50,8 @@ const LoanDetailScreen = React.createClass({
             <Button
               btnText={"还款"}
               btnStyle={styles.repayBtn}
-              cotStyle={styles.repayBtnCot}/>
+              cotStyle={styles.repayBtnCot}
+              onPress={() => this.gotoLoanRepay()}/>
           </View>
 
           <View style={[styles.cellBox]}>
