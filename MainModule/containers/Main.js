@@ -1,6 +1,6 @@
 import React from 'react-native'
 
-import { Component, View, TouchableOpacity, StyleSheet, Text } from 'react-native'
+import { Component, View, TouchableOpacity, StyleSheet, Text, NativeModules } from 'react-native'
 
 class Main extends Component {
 
@@ -23,6 +23,10 @@ class Main extends Component {
      screen:'AddProperty.AddPropertyScreen',
      order:{}
     });
+    // var testModule = NativeModules.SecurityPasswordRNModule
+    //   testModule.show('0','title','message','',(e) => {
+    //     console.log("e ----- : ", e);
+    //   });
   }
 
   gotoPro() {

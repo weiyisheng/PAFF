@@ -55,7 +55,7 @@ RCT_EXPORT_METHOD(show
 RCT_EXPORT_METHOD(cancel)
 ```
  
-## PAFFPopoverView （module:PAFFRCTTips）
+## PAFFPopoverView （module:PAFFTips）
 
 显示tips
 
