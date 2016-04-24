@@ -7,76 +7,79 @@ import HFStyleSheet from 'HFStyleSheet'
 
 //constants
 import { Red, Yellow, ContainerBackgroundColor } from '../../constants/colors'
-import { COUNT_TYPE_DEBIT_CARD, COUNT_TYPE_PASS_BOOK,
-  COUNT_TYPE_DEPOSIT_RECEIPT } from '../../constants/normal'
+import { COUNT_TYPE_BANK, COUNT_TYPE_CUN_ZHE,
+  COUNT_TYPE_GAGE_REG } from '../../constants/normal'
 
 
 const CountBox = React.createClass({
 
-  countItemChoosed() {
+  countItemChoosed(accountNo) {
     let { countChoosed } = this.props
     if(countChoosed) {
-      countChoosed()
+      countChoosed(accountNo)
     }
   },
 
   render() {
-    let { type } = this.props
-    let image = require('../img/relevance_property_ic_debit_card.png')
-    let title = ""
-    if(type === COUNT_TYPE_DEBIT_CARD) {
-      image = require('../img/relevance_property_ic_debit_card.png')
-      title = "借记卡"
-    } else if(type === COUNT_TYPE_PASS_BOOK) {
-      image = require('../img/relevance_property_ic_pass_book.png')
-      title = "存折"
-    } else {
-      image = require('../img/relevance_property_ic_deposit_receipt.png')
-      title = "存单"
-    }
-    let shadowStyle = {
-      shadowOffset: {
-        width: 0,
-        height: 0
-      },
-      shadowColor: "#000000",
-      shadowOpacity: .2,
-    }
-    if(Platform.OS === 'android') {
-      shadowStyle = {
-        borderWidth: 1,
-        borderColor: "#d0d0d0"
+    let { data } = this.props
+    if(data && data.length > 0) {
+      let image = require('../img/relevance_property_ic_debit_card.png')
+      let title = ""
+      if(data[0].accountType === COUNT_TYPE_BANK) {
+        image = require('../img/relevance_property_ic_debit_card.png')
+        title = "借记卡"
+      } else if(data[0].accountType === COUNT_TYPE_CUN_ZHE) {
+        image = require('../img/relevance_property_ic_pass_book.png')
+        title = "存折"
+      } else if(data[0].accountType === COUNT_TYPE_GAGE_REG) {
+        image = require('../img/relevance_property_ic_deposit_receipt.png')
+        title = "存单"
       }
-    }
+      let shadowStyle = {
+        shadowOffset: {
+          width: 0,
+          height: 0
+        },
+        shadowColor: "#000000",
+        shadowOpacity: .2,
+      }
+      if(Platform.OS === 'android') {
+        shadowStyle = {
+          borderWidth: 1,
+          borderColor: "#d0d0d0"
+        }
+      }
 
-    return (
-      <View style={[ContainerBackgroundColor, styles.cot]}>
-        <View style={[shadowStyle, styles.box]}>
-          <View style={[styles.titleBox]}>
-            <Image source={image}/>
-            <Text style={[styles.titleText]}>{title}</Text>
+      return (
+        <View style={[ContainerBackgroundColor, styles.cot]}>
+          <View style={[shadowStyle, styles.box]}>
+            <View style={[styles.titleBox]}>
+              <Image source={image}/>
+              <Text style={[styles.titleText]}>{title}</Text>
+            </View>
+
+            {
+              (() => {
+                return data.map((e, index) => {
+
+                  return (
+                    <TouchableOpacity key={index} onPress={() => this.countItemChoosed(e.accountNo)}>
+                      <View style={[styles.countTextBox]}>
+                        <Text style={[styles.itemText]}>{e.accountNo}</Text>
+                      </View>
+                    </TouchableOpacity>
+                  )
+                })
+              })()
+            }
           </View>
-
-          <TouchableOpacity onPress={this.countItemChoosed}>
-            <View style={[styles.countTextBox]}>
-              <Text style={[styles.itemText]}>3211 **** **** **** 211</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.countItemChoosed}>
-            <View style={[styles.countTextBox]}>
-              <Text style={[styles.itemText]}>3211 **** **** **** 211</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.countItemChoosed}>
-            <View style={[styles.countTextBox]}>
-              <Text style={[styles.itemText]}>3211 **** **** **** 211</Text>
-            </View>
-          </TouchableOpacity>
-
         </View>
-      </View>
-    )
+      )
+    } else {
+      return <View />
+    }
   }
+
 })
 
 module.exports = CountBox

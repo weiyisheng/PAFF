@@ -10,19 +10,17 @@ import HFStyleSheet from 'HFStyleSheet'
 import Button from '../components/Button'
 //constants
 import { Red, Yellow, ContainerBackgroundColor, TextColorBlack } from '../../constants/colors'
-import { COUNT_TYPE_DEBIT_CARD, COUNT_TYPE_PASS_BOOK,
-  COUNT_TYPE_DEPOSIT_RECEIPT } from '../../constants/normal'
+import { COUNT_TYPE_BANK, COUNT_TYPE_CUN_ZHE,
+  COUNT_TYPE_GAGE_REG } from '../../constants/normal'
 
-// net work request
-import { RepayMethodData } from '../../actions/requestDataAction'
-import { NetWorkURL } from '../../actions/urlmanager'
 const HasCountScene = React.createClass({
 
   back() {
     this.props.navigator.pop()
   },
 
-  countChoosed() {
+  countChoosed(accountNo) {
+    console.log(" countChoosed, accountNo : ", accountNo);
     this.successModal.open()
   },
 
@@ -30,11 +28,9 @@ const HasCountScene = React.createClass({
     this.successModal.close()
   },
 
-  componentDidMount() {
-    RepayMethodData(NetWorkURL.custUnAddAccListURL, )
-  },
-
   render() {
+    //从 AddPropertyScreen 通过props传入的数据， 分别传入3个CountBox
+    const { unAddBankList, unAddCunZheList, unAddGageRegList } = this.props
 
     return (
       <View style={[{flex: 1}, ContainerBackgroundColor]}>
@@ -48,9 +44,9 @@ const HasCountScene = React.createClass({
               输入完整的卡号和取款密码，即可关联成功。</Text>
           </View>
 
-          <CountBox type={COUNT_TYPE_DEBIT_CARD} countChoosed={this.countChoosed}/>
-          <CountBox type={COUNT_TYPE_PASS_BOOK} countChoosed={this.countChoosed} />
-          <CountBox type={COUNT_TYPE_DEPOSIT_RECEIPT} countChoosed={this.countChoosed} />
+          <CountBox data={unAddBankList} countChoosed={this.countChoosed}/>
+          <CountBox data={unAddCunZheList} countChoosed={this.countChoosed} />
+          <CountBox data={unAddGageRegList} countChoosed={this.countChoosed} />
           <View style={{width: 1, height: 30}}/>
         </ScrollView>
 

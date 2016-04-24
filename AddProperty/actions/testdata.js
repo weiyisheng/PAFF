@@ -6,7 +6,7 @@
    code       : '1003',               //返回码
    msg        : '成功',                //返回信息
    bankList   : [{
-     accountNo     : '10*****03',       //账号
+     accountNo     : '10483*****030',       //账号
      accountType   : '1',            //账号类型
      depoType      : '1',            //存单类型
      accountState  : '有效',            //账号状态
@@ -14,7 +14,15 @@
      bankNo        : '1111***8222',    //行号
      voucTypeName  : '身份证',          //凭证类型名称
    },{
-     accountNo     : '10*****03',       //账号
+     accountNo     : '33040*****038',       //账号
+     accountType   : '1',            //账号类型
+     depoType      : '2',            //存单类型
+     accountState  : '有效',            //账号状态
+     bankName      : '泸州银行',         //行名
+     bankNo        : '1111***8222',    //行号
+     voucTypeName  : '身份证',          //凭证类型名称
+   },{
+     accountNo     : '44590*****038',       //账号
      accountType   : '1',            //账号类型
      depoType      : '2',            //存单类型
      accountState  : '有效',            //账号状态
@@ -23,7 +31,7 @@
      voucTypeName  : '身份证',          //凭证类型名称
    }],
    gageRegList   : [{
-     accountNo     : '10*****03',       //账号
+     accountNo     : '100****12',       //账号
      accountType   : '3',            //账号类型
      depoType      : '1',            //存单类型
      accountState  : '有效',            //账号状态
@@ -31,7 +39,7 @@
      bankNo        : '1111***8222',    //行号
      voucTypeName  : '身份证',          //凭证类型名称
    },{
-     accountNo     : '10*****03',       //账号
+     accountNo     : '120*****78',       //账号
      accountType   : '3',            //账号类型
      depoType      : '2',            //存单类型
      accountState  : '有效',            //账号状态
@@ -40,7 +48,7 @@
      voucTypeName  : '身份证',          //凭证类型名称
    }],
    cunzheList   : [{
-     accountNo     : '10*****03',       //账号
+     accountNo     : '14440*****36',       //账号
      accountType   : '2',            //账号类型
      depoType      : '1',            //存单类型
      accountState  : '有效',            //账号状态
@@ -48,7 +56,7 @@
      bankNo        : '1111***8222',    //行号
      voucTypeName  : '身份证',          //凭证类型名称
    },{
-     accountNo     : '10*****03',       //账号
+     accountNo     : '15210*****89',       //账号
      accountType   : '2',            //账号类型
      depoType      : '2',            //存单类型
      accountState  : '有效',            //账号状态
@@ -56,6 +64,10 @@
      bankNo        : '1111***8222',    //行号
      voucTypeName  : '身份证',          //凭证类型名称
    }],                       //银行卡列表
+
+  // bankList:[],
+  // gageRegList: [],
+  // cunzheList: []
  }
 
 /** 密码校验

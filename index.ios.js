@@ -14,7 +14,8 @@ require('./index.module');
 var React = require('react-native');
 var {Provider} = require('react-redux');
 var {createStore, applyMiddleware, combineReducers} = require('redux');
-var thunk = require('redux-thunk');
+//var thunk = require('redux-thunk');
+import thunk from 'redux-thunk'
 var logger = require('redux-logger');
 var HFNavigator = require('HFNavigator');
 var HFModuleManager = require('HFModuleManager');
@@ -26,8 +27,8 @@ if (__DEV__) {
 } else {
 	createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 }
-// const reducer = combineReducers(HFModuleManager.combineProperty('reducer'));
-// const store = createStoreWithMiddleware(reducer);
+const reducer = combineReducers(HFModuleManager.combineProperty('reducer'));
+const store = createStoreWithMiddleware(reducer);
 
 var App = React.createClass({
 	initRoute:function(){
@@ -58,7 +59,9 @@ var App = React.createClass({
 		let route = {props};
 		route.screen = HFModuleManager.getMainScreen("MainModule");
 		return (
-			<HFNavigator initialRoute={route}/>
+      <Provider store={store}>
+			   <HFNavigator initialRoute={route}/>
+      </Provider>
 		);
 	},
 });
