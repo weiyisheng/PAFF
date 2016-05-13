@@ -37,7 +37,7 @@ const PropertyCenterScreen = React.createClass({
 
   gotoIOU() {
     this.props.navigator.push({
-     screen: require('./IOUDetailScreen'),
+     screen: require('./DebtDetailScreen'),
      order:{}
     });
   },

@@ -5,26 +5,23 @@
     code          : '1111',           //返回码
     msg           : 'nihao',          //返回信息
     dueNo         : '2015',           //借据号
-    loanBalance   : '666,001.00',     //借款余额
-    dueMount      : '5,001.00',       //借据金额
-    inRate        : '1',              //执行利率
-    repayMethod   : '按月等额本息',     //还款方式
     beginData     : '2015.06.12',     //起始时间
     endData       : '2016.06.12',     //到期时间
-    baseRate      : '1.2',            //基准李旭
-    dueStatus     : '有效',            //借据状态
-    nextRepDate   : '4月20日',         //下次还款日期
+    dueAmount     : '5,001.00',       //借据金额
     crtBalance    : '4,001.00',       //本金
     normalBalance : '1111111',        //正常余额
+    inRate        : '1',              //执行利率
+    baseRate      : '1.2',            //基准李旭
+    dueStatus     : '有效',            //借据状态
+    isLate        : 'Y',              //是否逾期
+    nextRepDate   : '4月20日',         //下次还款日期
     nextRepBalance: '4,001.00',       //下次待还本金
     nextRepAnt    : '1,001.00(含逾期)',//下次待还利息
-    totalMount    : '240,000.00',     //本息合计
-    repaymendActNo: '泸州市商业银行',   //还款账户
-    repayMethod   : '自动扣款',        //扣款方式
+    repaymendActNo: '111112223333',   //还款账户
     pactNo        : '1112',           //合同号
-    repedAmtSum   : '已还总额',        //已还总额
-    repedAnt      : '已还利息',        //已还利息
-    repedCurAmt   : '1110',           //已还本金
+    repedAmtSum   : '11233222',       //已还总额
+    repedAnt      : '112222',         //已还利息
+    repedCurAmt   : '112223322',      //已还本金
  },
 
  /*还款列表
@@ -36,7 +33,7 @@
   export const rePayListData = {
      code          : '1111',           //返回码
      msg           : 'nihao',          //返回信息
-
+     totalNum      : '2',              //总数S
      rePayList     : [{
        traDate  : '2016.02.01',        //交易日期
        actNo    : '112**812',          //账号
@@ -112,12 +109,4 @@
  export const CommonResponseData = {
    code : '0000',       //返回码
    msg  : '成功',       //返回信息
- },
-
- //引用字典列表
- export const DataDictionary = {
-   debtDetailsURl : DebtDetailsData,
-   rePayMentListURL : rePayListData,
-   delBankAccURL : CommonResponseData,
-   bankSubCardDetailsURL : bankSubCardDetailsData,
  },

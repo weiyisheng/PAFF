@@ -10,7 +10,7 @@ import ContentCenterCell from '../components/ContentCenterCell'
 import { Red, BorderColor, Yellow, ContainerBackgroundColor,
   TextColorBlack, TextColorGray } from '../../constants/colors'
 
-const IOUDetailScreen = React.createClass({
+const DebtDetailScreen = React.createClass({
 
   back() {
     this.props.navigator.pop()
@@ -60,7 +60,7 @@ const IOUDetailScreen = React.createClass({
   }
 })
 
-module.exports = IOUDetailScreen
+module.exports = DebtDetailScreen
 
 const styles = HFStyleSheet.create({
   textCenter: {

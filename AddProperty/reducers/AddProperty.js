@@ -6,7 +6,6 @@ import * as actionTypes from '../constants/ActionTypes';
 
 /*Redux使用*/
 function operate(state, action) {
-    console.info(action);
 
     switch(action.type) {
         case actionTypes.CUST_UNADD_ACC_LIST:

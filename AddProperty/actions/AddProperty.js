@@ -26,7 +26,7 @@ const NetWorkURL = {
 const isTestData = true;
 
 /*获取客户未下挂资产*/
-export function custUnAddAccList() {
+export function custUnAddAccList(params) {
     if (isTestData) {
       return dispach => dispach ({
         type : actionTypes.CUST_UNADD_ACC_LIST,
@@ -49,4 +49,56 @@ export function custUnAddAccList() {
                 Network.showErrorToast(error);
             });
     }
-}
+};
+
+/*加挂资产*/
+export function addCustAcc(params) {
+    if (isTestData) {
+      return dispach => dispach ({
+        type : actionTypes.ADD_CUST_ACC,
+        data : testdata.CommonResponseData
+      });
+    }
+
+    return (dispach) => {
+        PALoading.showLoading('数据加载中...');
+        Network.post(NetWorkURL.addCustAccURL, params)
+            .then((responseData) => {
+                PALoading.hide();
+                dispach ({
+                    type : actionTypes.ADD_CUST_ACC,
+                    data : responseData,
+                });
+            })
+            .catch((error) => {
+                PALoading.hide();
+                Network.showErrorToast(error);
+            });
+    }
+};
+
+/*密码校验*/
+export function CheckPassWord(params) {
+    if (isTestData) {
+      return dispach => dispach ({
+        type : actionTypes.PASSWORD_CHECK,
+        data : testdata.passwordCheckData
+      });
+    }
+
+    return (dispach) => {
+        PALoading.showLoading('数据加载中...');
+        Network.post(NetWorkURL.passwordCheckURL, params)
+            .then((responseData) => {
+                PALoading.hide();
+                dispach ({
+                    type : actionTypes.PASSWORD_CHECK,
+                    data : responseData,
+                });
+            })
+            .catch((error) => {
+                PALoading.hide();
+                Network.showErrorToast(error);
+            });
+    }
+};
