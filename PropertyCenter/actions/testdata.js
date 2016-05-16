@@ -6,7 +6,7 @@
     msg           : 'nihao',          //返回信息
     dueNo         : '2015',           //借据号
     beginData     : '2015.06.12',     //起始时间
-    endData       : '2016.06.12',     //到期时间
+    endDate       : '2016.06.12',     //到期时间
     dueAmount     : '5,001.00',       //借据金额
     crtBalance    : '4,001.00',       //本金
     normalBalance : '1111111',        //正常余额
@@ -22,7 +22,7 @@
     repedAmtSum   : '11233222',       //已还总额
     repedAnt      : '112222',         //已还利息
     repedCurAmt   : '112223322',      //已还本金
- },
+ }
 
  /*还款列表
  * pactNo string 合同号
@@ -59,9 +59,9 @@
        corbankName: 'ssss22233',       //对方行号
        corActno  : '33332222',         //对方卡号
      }]
-  },
+  }
 
-  /*还款列表
+  /*银行卡详情
   * accountNo  string 交易账号
   */
    export const bankSubCardDetailsData = {
@@ -73,9 +73,9 @@
         avaiBalance   : '1234.43',        //可用余额
         balance       : '666,001.00',     //余额
         bankNo        : '123****23',      //行号
-        endData       : '2016.06.12',     //到期时间
+        endDate       : '2016.06.12',     //到期时间
         frozenBalance : '11111.2',        //冻结余额
-        openData      : '2015.06.12',     //开户日
+        openDate      : '2015.06.12',     //开户日
         rate          : '1.2',            //利率
         name          : 'nihao',          //名称
         term          : '1',             //存期
@@ -88,9 +88,9 @@
         avaiBalance   : '1234.43',        //可用余额
         balance       : '666,001.00',     //余额
         bankNo        : '123****23',      //行号
-        endData       : '2016.06.12',     //到期时间
+        endDate       : '2016.06.12',     //到期时间
         frozenBalance : '11111.2',        //冻结余额
-        openData      : '2015.06.12',     //开户日
+        openDate      : '2015.06.12',     //开户日
         rate          : '1.2',            //利率
         name          : 'nihao',          //名称
         term          : '1',             //存期
@@ -98,7 +98,28 @@
         dueFlag       : '0',             //到期标示
         isAtuoTran    : '1',            //自动转存标示
       }]
-   },
+   }
+
+
+
+
+   /*存单详情
+   *
+   */
+    export const termDetailsData = {
+       code          : '1111',           //返回码
+       msg           : 'nihao',          //返回信息
+       data  : {
+         accountState: "", // 账号状态
+         balance: "36952.00", //余额
+         openDate      : '2015.06.12',     //开户日
+         endDate       : '2016.06.12',     //到期时间
+         rate          : '1.2',            //利率
+         svName : "", //储种名称
+         svType        : '07',            //存储种类
+       }
+    }
+
 
 //通用返回结果
 /*删除银行卡
@@ -109,4 +130,4 @@
  export const CommonResponseData = {
    code : '0000',       //返回码
    msg  : '成功',       //返回信息
- },
+ }

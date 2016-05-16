@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
 
-module.exports.Property = combineReducers({
-
+module.exports.PropertyCenter = combineReducers({
+  PropertyDetails: require('./PropertyCenter'),
 });

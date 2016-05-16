@@ -55,6 +55,7 @@ class AddPropertyScreen extends Component{
               } else {
                 return (
                   <HasCountScreen
+                    action={this.props.action}
                     unAddBankList={unAddBankList}
                     unAddCunZheList={unAddCunZheList}
                     unAddGageRegList={unAddGageRegList}

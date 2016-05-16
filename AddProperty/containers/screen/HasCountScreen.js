@@ -21,7 +21,8 @@ const HasCountScene = React.createClass({
 
   countChoosed(accountNo) {
     console.log(" countChoosed, accountNo : ", accountNo);
-    this.successModal.open()
+    //this.successModal.open()
+    this.props.action.addOrRemoveAccFun(accountNo, 0)
   },
 
   closeModal(){

@@ -22,15 +22,16 @@ const NetWorkURL = {
     queryRepaymentListURL : '/btoa/work/asset/queryRepaymentList', //还款列表
     addOrRemoveAccURL : '/btoa/work/asset/addOrRemoveAcc', //删除添加卡
     querySubCardInfoURL : '/btoa/work/asset/querySubAccListInfo',  //获取银行卡信息
+    queryTermDetails : '/btoa/work/asset/queryTermAccInfo',  //获取银行卡信息
 };
 
 const isTestData = true;
 
 /*获取借据详情*/
-export function queryCustDebtDetails(params) {
+export function queryCustDebtDetails(custDebetNo) {
     if (isTestData) {
       return dispach => dispach ({
-        type : actionTypes.DEBT_DETAILS,
+        type : actionTypes.CUST_DEBT_DETAILS,
         data : testdata.DebtDetailsData
       });
     }
@@ -41,7 +42,7 @@ export function queryCustDebtDetails(params) {
             .then((responseData) => {
                 PALoading.hide();
                 dispach ({
-                    type : actionTypes.DEBT_DETAILS,
+                    type : actionTypes.CUST_DEBT_DETAILS,
                     data : responseData,
                 });
             })
@@ -53,7 +54,7 @@ export function queryCustDebtDetails(params) {
 };
 
 /*获取银行卡以及存折详情*/
-export function querySubCardDetails(params) {
+export function querySubCardDetails(accountNo) {
     if (isTestData) {
       return dispach => dispach ({
         type : actionTypes.BANK_SUB_CARD_DETAILS,
@@ -77,6 +78,33 @@ export function querySubCardDetails(params) {
             });
     }
 };
+
+/*获取存单详情*/
+export function queryTermDetails(accountNo) {
+    if (isTestData) {
+      return dispach => dispach ({
+        type : actionTypes.TERM_DETAILS,
+        data : testdata.termDetailsData
+      });
+    }
+
+    return (dispach) => {
+        PALoading.showLoading('数据加载中...');
+        Network.post(NetWorkURL.queryTermDetails, params)
+            .then((responseData) => {
+                PALoading.hide();
+                dispach ({
+                    type : actionTypes.TERM_DETAILS,
+                    data : responseData,
+                });
+            })
+            .catch((error) => {
+                PALoading.hide();
+                Network.showErrorToast(error);
+            });
+    }
+};
+
 
 /*获取还款列表*/
 export function queryRepaymentList(params) {

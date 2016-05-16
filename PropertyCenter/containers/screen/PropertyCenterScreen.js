@@ -28,16 +28,16 @@ const PropertyCenterScreen = React.createClass({
     });
   },
 
-  gotoCerti() {
+  gotoCunDan() {
     this.props.navigator.push({
-     screen: require('./CertifyDetailScreen'),
+     screen: require('./TermDetailScreen'),
      order:{}
     });
   },
 
-  gotoIOU() {
+  gotoCustDebet() {
     this.props.navigator.push({
-     screen: require('./DebtDetailScreen'),
+     screen: require('./CustDebtDetailScreen'),
      order:{}
     });
   },
@@ -59,10 +59,10 @@ const PropertyCenterScreen = React.createClass({
             <TouchableOpacity style={[styles.button, styles.center, {marginTop: 20}]} onPress={() => this.gotoBank()}>
               <Text style={[styles.text]}>银行卡详情</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.button, styles.center, {marginTop: 20}]} onPress={() => this.gotoCerti()}>
+            <TouchableOpacity style={[styles.button, styles.center, {marginTop: 20}]} onPress={() => this.gotoCunDan()}>
               <Text style={[styles.text]}>存单详情</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.button, styles.center, {marginTop: 20}]} onPress={() => this.gotoIOU()}>
+            <TouchableOpacity style={[styles.button, styles.center, {marginTop: 20}]} onPress={() => this.gotoCustDebet()}>
               <Text style={[styles.text]}>借据详情</Text>
             </TouchableOpacity>
           </View>

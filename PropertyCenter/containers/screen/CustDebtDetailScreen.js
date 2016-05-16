@@ -10,14 +10,26 @@ import ContentCenterCell from '../components/ContentCenterCell'
 import { Red, BorderColor, Yellow, ContainerBackgroundColor,
   TextColorBlack, TextColorGray } from '../../constants/colors'
 
+/*Redux使用*/
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as PropertyCenterActions from '../../actions/PropertyCenter';
+
 const DebtDetailScreen = React.createClass({
 
   back() {
     this.props.navigator.pop()
   },
 
+  componentWillMount() {
+    const { custDebetNo } = this.props
+    this.props.action.queryCustDebtDetails(custDebetNo)
+  },
+
   render() {
 
+    const { custDebtDetails } = this.props
+    console.log(" custDebtDetails : ", custDebtDetails);
     return (
       <View style={[{flex: 1}, ContainerBackgroundColor]}>
         <PAFFNavBar
@@ -60,7 +72,22 @@ const DebtDetailScreen = React.createClass({
   }
 })
 
-module.exports = DebtDetailScreen
+
+// state => props
+function mapStateToProps(state) {
+    return {
+      custDebtDetails: state.PropertyCenter.PropertyDetails.custDebtDetails
+    }
+}
+
+// dispatch => props
+function mapDispatchToProps(dispatch) {
+    return {
+        action: bindActionCreators(PropertyCenterActions, dispatch)
+    }
+}
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(DebtDetailScreen);
 
 const styles = HFStyleSheet.create({
   textCenter: {
