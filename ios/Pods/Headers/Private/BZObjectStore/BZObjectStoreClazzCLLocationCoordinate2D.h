@@ -1,0 +1,1 @@
+../../../BZObjectStore/BZObjectStore/CoreLocation/BZObjectStoreClazzCLLocationCoordinate2D.h
